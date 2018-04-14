@@ -36,7 +36,7 @@ class SunPipeline(object):
         self.client.insert(dict_data)
         return item
 
-    def close_spider(self, item):
+    def close_spider(self, item):k
         """关闭数据库"""
         self.client.close()
         pass
