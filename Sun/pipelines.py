@@ -21,6 +21,7 @@ class SunPipeline(object):
         col_name = settings.get('MONGO_COLNAME')
         # 连接数据库
         self.client = MongoClient(host=host, port=port)
+        print(self.client.database_names())
         # 设置连接数据库的名称
         self.db = self.client[db_name]
         self.col = self.db[col_name]
@@ -31,12 +32,13 @@ class SunPipeline(object):
     def process_item(self, item, spider):
         """讲数据写入数据库"""
         # 首先，讲字典转化为json
-        dict_data = dict(item)
-        # 插入数据库
+        # dict_data = dict(item)
+        # # 插入数据库
         self.client.insert(dict_data)
+        print('inserting into database')
         return item
 
-    def close_spider(self, item):k
+    def close_spider(self, item):
         """关闭数据库"""
         self.client.close()
         pass
